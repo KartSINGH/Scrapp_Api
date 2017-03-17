@@ -9,6 +9,11 @@ app.use(function(req, res, next) {
     next()
 })
 
+<<<<<<< HEAD
+=======
+app.use(bodyparser.json())
+
+>>>>>>> e7f42a7eff4c8e88b5207d9b3a27471d71b9c50c
 app.use(bodyparser.urlencoded({
     extended: true
 }))
