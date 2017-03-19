@@ -1,6 +1,6 @@
 var sequelize = require('sequelize'),
 seq=new sequelize('scrapp','root','scrappfree',{
-    host:'ec2-35-154-195-217.ap-south-1.compute.amazonaws.com',
+    host:'localhost',
  dialect:'mysql',
     pool:{
         max:15,
