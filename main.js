@@ -13,9 +13,13 @@ app.use(bodyparser.urlencoded({
     extended: true
 }))
 
+app.get('/', (request, response) => {
+    message : 'ok'
+})
+
 app.use('/raise-request',require('./models/user'));
 
-app.listen(8888,'localhost',function(){
+app.listen(8888,function(){
     console.log('Server Running');
 })
 
