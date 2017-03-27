@@ -95,11 +95,7 @@ router.post('/submit-request', (request, response) => {
                 response.send('email sent');
             }
         });
-        response.send({
-            status:0,
-            message:"Email sent"
-
-        })
+       
     }).catch(function (error) {
         response.send(error);
         response.send({
