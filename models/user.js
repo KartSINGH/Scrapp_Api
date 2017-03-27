@@ -2,6 +2,7 @@ var router = require('express').Router(),
     connection = require('../connection'),
     nodemailer = require('nodemailer'),
     sequelize = connection.sequelize,
+    wellknown = require('nodemailer-wellknown'),
 
     temp_user = connection.seq.define('temp_user', {
         user_id: {
@@ -71,19 +72,21 @@ router.post('/submit-request', (request, response) => {
         time: data_body.time
     }).then(function (user_name) {
         var name = user_name;
+        
         var transporter = nodemailer.createTransport({
-            service: "gmail",
+           
+            service: 'Godaddy',
             auth: {
-                user: 'nikhil.singh.moni@gmail.com',
-                pass: 'nikhilsingh'
+                user: 'info@scrapp.in',
+                pass: 'Rohan#123'
             },
-            secure: true,
+           
 
         });
         var text = "Greetings " + name.user_name + " from ScrApp team!.We thank you for choosing us.Our call support will get in touch with you on the registered mobile number and initiate further process.";
         var mailOptions = {
             to: name.user_email,
-            from: 'nikhil.singh.moni@gmail.com',
+            from: 'info@scrapp.in',
             subject: 'ScrApp || Srcap Pickup Response',
             text: text
         }
