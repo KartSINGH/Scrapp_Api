@@ -72,7 +72,7 @@ router.post('/submit-request', (request, response) => {
     }).then(function (user_name) {
         var name = user_name;
         var transporter = nodemailer.createTransport({
-            service: "Godaddy",
+            service: "gmail",
             auth: {
                 user: 'nikhil.singh.moni@gmail.com',
                 pass: 'nikhilsingh'
@@ -94,13 +94,6 @@ router.post('/submit-request', (request, response) => {
                 response.send('email sent');
             }
         });
-
-    }).catch(function (error) {
-        response.send(error);
-        response.send({
-            status: 1,
-            message: 'error'
-        })
     })
 })
-module.exports = router
+module.exports = router;
