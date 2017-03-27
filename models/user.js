@@ -75,8 +75,8 @@ router.post('/submit-request', (request, response) => {
         var transporter = nodemailer.createTransport({
           service:"Godaddy",
             auth:{
-                user:'info@scrapp.in',
-                pass:'Rohan#123'
+                user:'nikhil.singh.moni@gmail.com',
+                pass:'nikhilsingh'
             },
             secure : true,
             
@@ -84,7 +84,7 @@ router.post('/submit-request', (request, response) => {
         var text="Greetings "+name.user_name+" from ScrApp team!.We thank you for choosing us.Our call support will get in touch with you on the registered mobile number and initiate further process.";
         var mailOptions={
             to:name.user_email,
-            from:'info@scrapp.in',
+            from:'nikhil.singh.moni@gmail.com',
             subject:'ScrApp || Srcap Pickup Response',
             text:text
         }

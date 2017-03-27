@@ -14,7 +14,8 @@ app.use(bodyparser.urlencoded({
 }))
 
 app.get('/', (request, response) => {
-    message : 'ok'
+    response.send('ok');
+  
 })
 
 app.use('/raise-request',require('./models/user'));
