@@ -1,4 +1,3 @@
-
 var router = require('express').Router(),
     connection = require('../connection'),
     nodemailer = require('nodemailer'),
@@ -42,7 +41,7 @@ temp_user.sync()
 
 router.get('/temp/all_users', (request, response) => {
     temp_user.findAll({
-        attributes: ['user_id', 'phone_number', 'user_email','user_name','user_res_address','scrap_amount','time']
+        attributes: ['user_id', 'phone_number', 'user_email', 'user_name', 'user_res_address', 'scrap_amount', 'time']
     }).then((temp_user) => {
         response.send(temp_user);
     })
@@ -69,33 +68,33 @@ router.post('/submit-request', (request, response) => {
         user_name: data_body.user_name,
         res_address: data_body.res_address,
         scrap_amount: data_body.scrap_amount,
-        time:data_body.time
+        time: data_body.time
     }).then(function (user_name) {
-        var name=user_name;
+        var name = user_name;
         var transporter = nodemailer.createTransport({
-          service:"Godaddy",
-            auth:{
-                user:'nikhil.singh.moni@gmail.com',
-                pass:'nikhilsingh'
+            service: "Godaddy",
+            auth: {
+                user: 'nikhil.singh.moni@gmail.com',
+                pass: 'nikhilsingh'
             },
-            secure : true,
-            
+            secure: true,
+
         });
-        var text="Greetings "+name.user_name+" from ScrApp team!.We thank you for choosing us.Our call support will get in touch with you on the registered mobile number and initiate further process.";
-        var mailOptions={
-            to:name.user_email,
-            from:'nikhil.singh.moni@gmail.com',
-            subject:'ScrApp || Srcap Pickup Response',
-            text:text
+        var text = "Greetings " + name.user_name + " from ScrApp team!.We thank you for choosing us.Our call support will get in touch with you on the registered mobile number and initiate further process.";
+        var mailOptions = {
+            to: name.user_email,
+            from: 'nikhil.singh.moni@gmail.com',
+            subject: 'ScrApp || Srcap Pickup Response',
+            text: text
         }
-        transporter.sendMail(mailOptions,function(error,info){
-            if(error){
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
                 response.send(error)
-            }else{
+            } else {
                 response.send('email sent');
             }
         });
-       
+
     }).catch(function (error) {
         response.send(error);
         response.send({
