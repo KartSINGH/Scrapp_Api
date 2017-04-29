@@ -75,14 +75,15 @@ router.post('/submit-request', (request, response) => {
         
         var transporter = nodemailer.createTransport({
            
-            service: 'Godaddy',
+            service: 'Gmail',
             auth: {
-                user: 'info@scrapp.in',
-                pass: 'Rohan#123'
+                user: 'kart.singh15@gmail.com',
+                pass: 'dragonballzee'
             },
            
 
         });
+
         var text = "Greetings " + name.user_name + " from ScrApp team!.We thank you for choosing us.Our call support will get in touch with you on the registered mobile number and initiate further process.";
         var mailOptions = {
             to: name.user_email,
@@ -95,6 +96,22 @@ router.post('/submit-request', (request, response) => {
                 response.send(error)
             } else {
                 response.send('email sent');
+            }
+        });
+
+
+         var text1 = "User Raised Request " + name.user_name;
+        var mailOptions1 = {
+            to: 'nikhil.singh.moni@gmail.com',
+            from: 'kart.singh15@gmail.com',
+            subject: 'ScrApp || Srcap Pickup Response to Admin',
+            text: text1
+        }
+        transporter.sendMail(mailOptions1, function (error, info) {
+            if (error) {
+                response.send(error)
+            } else {
+                response.send('admin email sent email sent');
             }
         });
     })
