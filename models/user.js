@@ -18,6 +18,10 @@ var router = require('express').Router(),
             type: sequelize.STRING,
             allowNull: false,
         },
+         user_password: {
+            type: sequelize.STRING,
+            allowNull: false,
+        },
         user_name: {
             type: sequelize.STRING,
             allowNull: false
@@ -40,15 +44,15 @@ var router = require('express').Router(),
     })
 temp_user.sync()
 
-router.get('/temp/all_users', (request, response) => {
+/*router.get('/temp/all_users', (request, response) => {
     temp_user.findAll({
         attributes: ['user_id', 'phone_number', 'user_email', 'user_name', 'user_res_address', 'scrap_amount', 'time']
     }).then((temp_user) => {
         response.send(temp_user);
     })
-})
+})*/
 
-router.get('/temp/check_user/', (request, response) => {
+/*router.get('/temp/check_user/', (request, response) => {
     temp_user.findAll({
         where: {
             user_email: request.query.user_email
@@ -58,7 +62,7 @@ router.get('/temp/check_user/', (request, response) => {
         response.send(temp_user);
 
     })
-})
+})*/
 
 router.post('/submit-request', (request, response) => {
     data_body = request.body;
@@ -69,6 +73,7 @@ router.post('/submit-request', (request, response) => {
         user_name: data_body.user_name,
         res_address: data_body.res_address,
         scrap_amount: data_body.scrap_amount,
+        user_password: data_body.user_password,
         time: data_body.time
     }).then(function (user_name) {
         var name = user_name;
@@ -105,13 +110,14 @@ router.post('/submit-request', (request, response) => {
             to: 'nikhil.singh.moni@gmail.com',
             from: 'kart.singh15@gmail.com',
             subject: 'ScrApp || Srcap Pickup Response to Admin',
-            text: text1
+            text: text1,
+            html: '<h3>Booking ID </h3>'+name.user_id+'<p>User Name</p>'+name.user_name + '<p>User Email</p>'+name.user_email + '<p>User Phone Number</p>'+name.phone_number + '<p>User Address</p>' +name.res_address+ '<p>User Scrap Amount</p>' + name.scrap_amount+ '<p>User Decided Time</p>' +name.time
         }
         transporter.sendMail(mailOptions1, function (error, info) {
             if (error) {
                 response.send(error)
             } else {
-                response.send('admin email sent email sent');
+                response.send('admin email sent');
             }
         });
     })
